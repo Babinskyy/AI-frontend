@@ -1,0 +1,41 @@
+@import "./scss/ExampleQuestions", "./scss/NavigatonLink", "./scss/App", "./scss/ChatItem",
+  "./scss/Logo", "./scss/Header", "./scss/Chat", "./scss/Home";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(40, 40, 40);
+  color: #fff;
+  font-family: "Nunito Sans", sans-serif;
+  height: 100vh;
+}
+
+.MuiOutlinedInput-input-root.Mui-focused,
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgb(129, 129, 129) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

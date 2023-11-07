@@ -1,0 +1,25 @@
+.question-container {
+  width: 520px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+  .question {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    height: 100px;
+    width: 250px;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 20px;
+    padding: 10px;
+    transition: 0.1s;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(72, 72, 72, 0.35);
+    }
+  }
+}

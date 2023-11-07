@@ -1,0 +1,137 @@
+.question-container {
+  width: 520px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+}
+.question-container .question {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  height: 100px;
+  width: 250px;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 20px;
+  padding: 10px;
+  transition: 0.1s;
+}
+.question-container .question:hover {
+  cursor: pointer;
+  background-color: rgba(72, 72, 72, 0.35);
+}
+
+.nav-link {
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0px 10px;
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin: auto;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  width: 97%;
+  padding: 15px;
+  background-color: rgb(40, 40, 40);
+  gap: 20px;
+}
+
+.logo-container {
+  display: flex;
+  width: 310px;
+  align-items: center;
+  gap: 20px;
+}
+.logo-container .logo-image {
+  width: 70px;
+  height: 70px;
+}
+.logo-container .logo-text {
+  font-weight: 800;
+  font-size: 32px;
+  color: #f1f1f1;
+}
+
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 20px 0px !important;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 50vh;
+}
+.chat-container .messages-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-bottom: 30px;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 50%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(40, 40, 40);
+  color: #fff;
+  font-family: "Nunito Sans", sans-serif;
+  height: 100vh;
+}
+
+.MuiOutlinedInput-input-root.Mui-focused,
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgb(129, 129, 129) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}/*# sourceMappingURL=main.css.map */
