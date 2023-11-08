@@ -1,0 +1,18 @@
+.typing-animation {
+  font-size: 60px;
+  color: white;
+  display: "inline-block";
+  text-shadow: 1px 1px 20px #000;
+}
+
+@media (max-width: "1280px") {
+  .typing-animation {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: "768px") {
+  .typing-animation {
+    display: none;
+  }
+}

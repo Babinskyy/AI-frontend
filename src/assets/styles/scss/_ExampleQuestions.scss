@@ -23,3 +23,31 @@
     }
   }
 }
+
+@media (max-width: "768px") {
+  .question-container {
+    width: 400px;
+    .question {
+      width: 190px;
+      font-size: 18px;
+    }
+  }
+}
+@media (max-width: "640px") {
+  .question-container {
+    width: 370px;
+    .question {
+      width: 170px;
+      font-size: 16px;
+    }
+  }
+}
+@media (max-width: "576px") {
+  .question-container {
+    width: 300px;
+    .question {
+      width: 140px;
+      font-size: 15px;
+    }
+  }
+}

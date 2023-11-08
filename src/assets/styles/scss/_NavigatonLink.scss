@@ -1,9 +1,17 @@
 .nav-link {
   font-weight: 600;
   text-transform: uppercase;
-  margin: 0px 10px;
+  margin-left: 10px;
   padding: 8px 20px;
   border-radius: 3px;
   text-decoration: none;
   letter-spacing: 1px;
+}
+
+@media (max-width: "640px") {
+  .nav-link {
+    font-weight: 500;
+    padding: 4px 10px;
+    font-size: 13px;
+  }
 }

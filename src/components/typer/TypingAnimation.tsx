@@ -16,12 +16,7 @@ const TypingAnimation = () => {
         3000,
       ]}
       speed={30}
-      style={{
-        fontSize: "60px",
-        color: "white",
-        display: "inline-block",
-        textShadow: "1px 1px 20px #000",
-      }}
+      className="typing-animation"
       repeat={Infinity}
     />
   );

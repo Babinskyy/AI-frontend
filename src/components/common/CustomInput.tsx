@@ -1,9 +1,10 @@
-import { TextField, useThemeProps } from "@mui/material";
+import { TextField } from "@mui/material";
 
 type Props = {
   name: string;
   type: string;
   label: string;
+  width: string;
 };
 
 const CustomInput = (props: Props) => {
@@ -15,8 +16,9 @@ const CustomInput = (props: Props) => {
       type={props.type}
       InputLabelProps={{ style: { color: "white" } }}
       InputProps={{
-        style: { width: "400px", borderRadius: "10px", fontSize: 20, color: "white" },
+        style: { color: "white" },
       }}
+      className="custom-input"
     />
   );
 };

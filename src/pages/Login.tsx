@@ -32,39 +32,14 @@ const Login = () => {
   }, [auth]);
 
   return (
-    <Box
-      display={"flex"}
-      flex={{ xs: 1, md: 0.5 }}
-      justifyContent={"space-between"}
-      alignItems={"center"}
-      padding={2}
-      mt={16}
-    >
+    <Box className="login-container">
       <Box>
-        <Typography
-          style={{
-            fontSize: "60px",
-            color: "white",
-            display: "inline-block",
-            textShadow: "1px 1px 20px #000",
-          }}
-        >
-          Ask me about
-        </Typography>
+        <Typography className="greeting-text">Ask me about</Typography>
         <br />
         <TypingAnimation />
       </Box>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          padding: "30px",
-          boxShadow: "3px 3px 15px rgb(21 21 21)",
-          borderRadius: "10px",
-          border: "none",
-          backgroundColor: "#2f2f2f",
-        }}
-      >
+      <form onSubmit={handleSubmit} className="login-form">
         <Box
           sx={{
             display: "flex",
@@ -75,25 +50,9 @@ const Login = () => {
           <Typography variant="h4" textAlign="center" fontWeight={600}>
             Login
           </Typography>
-          <CustomInput type="email" name="email" label="Email" />
-          <CustomInput type="password" name="password" label="Password" />
-          <Button
-            type="submit"
-            sx={{
-              px: 2,
-              py: 1,
-              mt: 2,
-              width: "400px",
-              borderRadius: 2,
-              bgcolor: "rgb(81, 83, 143)",
-              color: "white",
-              ":hover": {
-                bgcolor: "white",
-                color: "black",
-              },
-            }}
-            endIcon={<IoIosLogIn />}
-          >
+          <CustomInput type="email" name="email" label="Email" width="400px" />
+          <CustomInput type="password" name="password" label="Password" width="400px" />
+          <Button type="submit" endIcon={<IoIosLogIn />} className="submit-button">
             Log in
           </Button>
         </Box>

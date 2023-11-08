@@ -1,12 +1,12 @@
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 type Props = {
   to: string;
-  bg: string;
+
   text: string;
-  textColor: string;
+
   onClick?: () => Promise<void>;
+  isChat: boolean;
 };
 
 const NavigatonLink = (props: Props) => {
@@ -14,7 +14,7 @@ const NavigatonLink = (props: Props) => {
     <Link
       onClick={props.onClick}
       to={props.to}
-      style={{ background: props.bg, color: props.textColor }}
+      style={{ background: "#51538f", color: "white" }}
       className="nav-link"
     >
       {props.text}

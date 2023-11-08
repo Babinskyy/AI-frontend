@@ -1,5 +1,19 @@
 .header-toolbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px 20px 0px !important;
+  padding: 20px 0px 20px 0px !important;
+  .buttons-panel {
+  }
+}
+
+@media (max-width: "768px") {
+  .header-toolbar {
+    .buttons-panel {
+      display: flex;
+      flex-direction: column;
+      a {
+        margin-top: 10px;
+      }
+    }
+  }
 }

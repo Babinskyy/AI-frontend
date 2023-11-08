@@ -1,0 +1,41 @@
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 150px;
+  .greeting-text {
+    font-size: 60px;
+    color: white;
+    display: inline-block;
+    text-shadow: 1px 1px 20px #000;
+  }
+
+  .login-form {
+    .submit-button {
+      background-color: rgb(81, 83, 143);
+      color: white;
+      margin-top: 15px;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+}
+
+@media (max-width: "1280px") {
+  .login-container {
+    .greeting-text {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: "768px") {
+  .login-container {
+    margin: 100px auto 0px auto;
+    .greeting-text {
+      display: none;
+    }
+  }
+}

@@ -12,25 +12,11 @@ const Header = () => {
         <Logo />
 
         {auth?.isLoggedIn ? (
-          <div className="buttons-panel">
-            {/* <NavigationLink
-              bg="rgb(255 196 49)"
-              to="/chat"
-              text="Chat"
-              textColor="black"
-            /> */}
-            <NavigationLink
-              bg="#51538f"
-              to="/"
-              text="Log out"
-              textColor="white"
-              onClick={auth.logout}
-            />
-          </div>
+          <NavigationLink to="/" text="Log out" onClick={auth.logout} isChat={true} />
         ) : (
           <div className="buttons-panel">
-            <NavigationLink bg="#51538f" to="/login" text="Log in" textColor="white" />
-            <NavigationLink bg="#51538f" to="/signup" text="Sign up" textColor="white" />
+            <NavigationLink to="/login" text="Log in" isChat={false} />
+            <NavigationLink to="/signup" text="Sign up" isChat={false} />
           </div>
         )}
       </Toolbar>
