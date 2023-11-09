@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/AuthContext.tsx";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 
+// axios.defaults.baseURL = "https://aiassistantapi.azurewebsites.net/api/v1/";
 axios.defaults.baseURL = "http://localhost:5000/api/v1";
 axios.defaults.withCredentials = true;
 
