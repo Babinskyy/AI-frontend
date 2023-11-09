@@ -36,6 +36,7 @@ const removeLanguageFromBlock = (str: string, word: string) => {
 const ChatItem = ({ content, role }: { content: string; role: "user" | "assistant" }) => {
   const messageBlocks = extractCodeFromString(content);
   const auth = useAuth();
+
   return role === "assistant" ? (
     <Box className="chat-item">
       <div style={{ height: "98%" }}>

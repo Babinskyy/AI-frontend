@@ -5,6 +5,7 @@ import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import io from "socket.io-client";
 import {
   deleteUserChats,
   getUserChats,
@@ -13,6 +14,8 @@ import {
 import toast from "react-hot-toast";
 import LoadingTyping from "../components/typer/LoadingTyping";
 import ExampleQuestions from "../components/chat/ExampleQuestions";
+
+const socket = io("http://localhost:5000" as string);
 
 type Message = {
   role: "user" | "assistant";
@@ -26,10 +29,14 @@ const Chat = () => {
 
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [answerLoading, setAnswerLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [messages, setMessages] = useState<string[]>([]);
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleSubmit = async () => {
+    setAnswerLoading(true);
     if (inputRef.current?.value) {
-      setAnswerLoading(true);
       const content = inputRef.current?.value as string;
 
       if (inputRef && inputRef.current) {
@@ -39,10 +46,10 @@ const Chat = () => {
       setChatMessages((prev) => [...prev, newMessage]);
       const chatData = await sendChatRequest(content);
       setChatMessages([...chatData.chats]);
-      setAnswerLoading(false);
     } else {
       toast.error("Input is empty!");
     }
+    setAnswerLoading(false);
   };
 
   const handleDeleteChats = async () => {
@@ -58,6 +65,44 @@ const Chat = () => {
       }
     }
   };
+  let newMessages: string[] = [];
+  const handleStreamEnd = (data: any) => {
+    console.log(data); // Log the array when the stream is done
+    setChatMessages((prev) => [...prev, data.content]);
+    setMessages([]);
+    newMessages = [];
+    setAnswerLoading(false);
+  };
+
+  const scrollToBottom = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  };
+
+  // Call scrollToBottom when new messages arrive
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, chatMessages]);
+
+  useEffect(() => {
+    socket.on("chunks", (data) => {
+      console.log(data.content);
+      newMessages.push(data.content);
+      setMessages([...newMessages]); // Update messages with the new array
+    });
+
+    socket.on("streamEnd", handleStreamEnd);
+
+    socket.on("resError", (data) => {
+      console.log(data);
+    });
+
+    return () => {
+      socket.off("chunks");
+      socket.off("streamEnd", handleStreamEnd);
+    };
+  }, [socket]);
 
   useLayoutEffect(() => {
     if (auth?.isLoggedIn && auth.user) {
@@ -80,9 +125,18 @@ const Chat = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!auth?.user) {
+      return navigate("/login");
+    }
+  }, []);
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
+
   return (
     <Box className="chat-container">
-      <Box className="messages-container">
+      <Box className="messages-container" ref={containerRef}>
         {chatMessages.length ? (
           <></>
         ) : (
@@ -93,20 +147,18 @@ const Chat = () => {
           return <ChatItem content={chat.content} role={chat.role} key={index} />;
         })}
         {answerLoading && (
-          <Box
-            sx={{
-              display: "flex",
-              p: 2,
-              bgcolor: "rgb(40,40,40)",
-              my: 2,
-              gap: 2,
-            }}
-          >
-            <Avatar sx={{ ml: "0", bgcolor: "rgb(40,40,40)" }}>
-              <img src="artificial-intelligence.png" alt="ai-avatar" width={"30px"} />
-            </Avatar>
+          <Box className="chat-item">
+            <div style={{ height: "98%" }}>
+              <Avatar sx={{ ml: "0", bgcolor: "rgb(40,40,40)" }}>
+                <img src="artificial-intelligence.png" alt="ai-avatar" width={"30px"} />
+              </Avatar>
+            </div>
+
             <Box>
-              <Typography>
+              <Typography fontSize={"20px"}>
+                {messages.map((message, index) => (
+                  <span key={index}>{message}</span>
+                ))}
                 <LoadingTyping />
               </Typography>
             </Box>
@@ -138,7 +190,11 @@ const Chat = () => {
             fontSize: "20px",
           }}
         />
-        <IconButton sx={{ ml: "auto", color: "white", mx: 1 }} onClick={handleSubmit}>
+        <IconButton
+          sx={{ ml: "auto", color: "white", mx: 1 }}
+          onClick={handleSubmit}
+          disabled={answerLoading}
+        >
           <IoMdSend />
         </IconButton>
       </div>
