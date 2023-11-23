@@ -5,7 +5,7 @@ const questions = [
   "How does a quantum computer work? 🖥️",
   "Explain photosynthesis to a 5 year old. 🌿",
   "How do I prepare Carbonara? 🍝",
-  "What is En Passant in chess? ♟️",
+  "Role-play Snape, inform Hermione that she has detention. 🧙‍♂️",
 ];
 
 type Props = {

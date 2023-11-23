@@ -123,12 +123,6 @@ const Chat = () => {
       return navigate("/login");
     }
   }, []);
-
-  useEffect(() => {
-    if (!auth?.user) {
-      return navigate("/login");
-    }
-  }, []);
   return (
     <Box className="chat-container">
       <Box className="messages-container" ref={containerRef}>

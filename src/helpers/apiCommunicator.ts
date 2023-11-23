@@ -18,7 +18,12 @@ export const signupUser = async (name: string, email: string, password: string) 
 };
 
 export const checkAuthStatus = async () => {
-  const res = await axios.get("/user/auth");
+  const token = localStorage.getItem("authToken");
+  const res = await axios.get("/user/auth", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (res.status !== 200) {
     throw new Error("Unable to authenticate.");
   }
@@ -27,7 +32,16 @@ export const checkAuthStatus = async () => {
 };
 
 export const sendChatRequest = async (message: string) => {
-  const res = await axios.post("/chat/new", { message });
+  const token = localStorage.getItem("authToken");
+  const res = await axios.post(
+    "/chat/new",
+    { message },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   if (res.status !== 200) {
     throw new Error("Unable to send chat.");
   }
@@ -36,7 +50,12 @@ export const sendChatRequest = async (message: string) => {
 };
 
 export const getUserChats = async () => {
-  const res = await axios.get("/chat/all-chats");
+  const token = localStorage.getItem("authToken");
+  const res = await axios.get("/chat/all-chats", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (res.status !== 200) {
     throw new Error("Unable to send chat.");
   }
@@ -45,7 +64,12 @@ export const getUserChats = async () => {
 };
 
 export const deleteUserChats = async () => {
-  const res = await axios.delete("/chat/delete");
+  const token = localStorage.getItem("authToken");
+  const res = await axios.delete("/chat/delete", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (res.status !== 200) {
     throw new Error("Unable to delete chat.");
   }
@@ -53,7 +77,13 @@ export const deleteUserChats = async () => {
   return data;
 };
 export const logoutUser = async () => {
-  const res = await axios.get("/user/logout");
+  const token = localStorage.getItem("authToken");
+  localStorage.removeItem("authToken");
+  const res = await axios.get("/user/logout", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (res.status !== 200) {
     throw new Error("Unable to logout.");
   }
