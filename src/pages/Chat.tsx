@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import LoadingTyping from "../components/typer/LoadingTyping";
 import ExampleQuestions from "../components/chat/ExampleQuestions";
 
+// const socket = io("https://aiassistantapi.azurewebsites.net" as string);
 const socket = io("http://localhost:5000" as string);
 
 type Message = {
@@ -67,7 +68,6 @@ const Chat = () => {
   };
   let newMessages: string[] = [];
   const handleStreamEnd = (data: any) => {
-    console.log(data); // Log the array when the stream is done
     setChatMessages((prev) => [...prev, data.content]);
     setMessages([]);
     newMessages = [];
@@ -87,7 +87,6 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on("chunks", (data) => {
-      console.log(data.content);
       newMessages.push(data.content);
       setMessages([...newMessages]); // Update messages with the new array
     });
@@ -130,10 +129,6 @@ const Chat = () => {
       return navigate("/login");
     }
   }, []);
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
-
   return (
     <Box className="chat-container">
       <Box className="messages-container" ref={containerRef}>
