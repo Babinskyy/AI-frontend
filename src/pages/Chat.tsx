@@ -15,8 +15,8 @@ import toast from "react-hot-toast";
 import LoadingTyping from "../components/typer/LoadingTyping";
 import ExampleQuestions from "../components/chat/ExampleQuestions";
 
-// const socket = io("https://aiassistantapi.azurewebsites.net" as string);
-const socket = io("http://localhost:5000" as string);
+const socket = io("https://aiassistantapi.azurewebsites.net" as string);
+// const socket = io("http://localhost:5000" as string);
 
 type Message = {
   role: "user" | "assistant";

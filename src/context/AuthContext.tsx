@@ -1,10 +1,5 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import {
-  checkAuthStatus,
-  loginUser,
-  logoutUser,
-  signupUser,
-} from "../helpers/apiCommunicator";
+import { checkAuthStatus, loginUser, signupUser } from "../helpers/apiCommunicator";
 
 type User = {
   name: string;
